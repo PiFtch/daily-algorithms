@@ -8,13 +8,30 @@ NAIVE-STRING-MATCHER(T, P)
 */
 
 #include <iostream>
+#include <cstring>
 using namespace std;
-
-NaiveStringMatcher(char[] text, char[] pattern) {
-    
-    
+int NaiveStringMatcher(char text[], char pattern[]) {
+    int n = strlen(text);
+    int m = strlen(pattern);
+    for (int s = 0; s <= n-m; s++){
+        bool match = false;
+        for (int i = 0; i < m; i++)
+            if (text[s+i] == pattern[i])
+                match = true;
+            else {
+                match = false;
+                break;
+            }
+        if (match)
+            return s;
+    }
+    return -1;
 }
 
 int main() {
-
+    char text[] = "abcdefg";
+    char pattern[] = "cde";
+    cout << strlen(text) << endl;
+    cout << NaiveStringMatcher(text, pattern) << endl;
+    return 0;
 }
